@@ -124,6 +124,7 @@
 				<p>
 					Ελληνικός κλώνος του <a href="https://www.powerlanguage.co.uk/wordle/">Wordle</a>
 					με <a href= "https://kit.svelte.dev/">SvelteKit</a>.
+					<a href= "https://github.com/philaris/elmasterle">Κώδικας</a>.
 				</p>
 				<p>
 			  		Έχεις 6 μαντεψιές για να βρεις την πενταγράμματη λέξη της ημέρας
