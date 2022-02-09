@@ -1,0 +1,8 @@
+{
+  "experimentalStudio": true,
+  "fixturesFolder": false,
+  "pluginsFile": false,
+  "supportFile": false,
+  "baseUrl": "http://localhost:3000",
+  "projectId": "dz753i"
+}
