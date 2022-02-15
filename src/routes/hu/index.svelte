@@ -10,4 +10,4 @@
 	<title>elmasterle</title>
 </svelte:head>
 
-<Game language='el'/>
+<Game language='hu'/>

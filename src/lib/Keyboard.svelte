@@ -1,24 +1,16 @@
 <script lang="ts">
-	import Key from "$lib/Key.svelte"
-	import { Row } from "sveltestrap"
-	export let keys: string[]
-	export let clueMap: Map<string, string> = new Map<string, string>()
+	import Keyboard_el from "$lib/Keyboard_el.svelte"
+	import Keyboard_hu from "$lib/Keyboard_hu.svelte"
+    export let language: string
+    export let keys: string[]
+    export let clueMap: Map<string, string> = new Map<string, string>()
 </script>
 
-<Row class="justify-content-md-center">
-{#each keys.slice(0, 8) as key}
-	<Key {key} clueLetter={clueMap.get(key)} />
-{/each}
-</Row>
-<Row class="justify-content-md-center">
-	{#each keys.slice(8, 17) as key}
-		<Key {key} clueLetter={clueMap.get(key)} />
-	{/each}
-</Row>
-<Row class="justify-content-md-center">
-	<Key key={'↵'} />
-	{#each keys.slice(17) as key}
-		<Key {key} clueLetter={clueMap.get(key)} />
-	{/each}
-	<Key key={'⌫'} />
-</Row>
+{#if language === 'el'}
+    <Keyboard_el {keys} {clueMap} />
+{:else if language === 'hu'}
+    <Keyboard_hu {keys} {clueMap} />
+{:else}
+    ERROR: Unknown language
+{/if}
+	

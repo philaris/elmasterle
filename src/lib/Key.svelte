@@ -2,6 +2,7 @@
 	import Key from "$lib/Key.svelte"
 	export let key: string
 	export let clueLetter: string = ' '
+	export let keyWidth: string = '5.0vh'
 
 	function click(): void {
 		const keyString = key === '↵' ? 'Enter' : (key === '⌫' ? 'Backspace' : key)
@@ -10,12 +11,14 @@
 	
 </script>
 
-<button class="keybox {clueLetter || ' '}" on:click={click}>{key}</button>
+<button class="keybox {clueLetter || ' '}"
+    style="--keyWidth: {keyWidth}"
+    on:click={click}>{key}</button>
 
 <style>
 	.keybox {
 		display: inline-block;
-		width: 5vh;
+		width: var(--keyWidth);
 		height: 8vh;
 		border: 1px solid gray;
 		border-radius: 25%;

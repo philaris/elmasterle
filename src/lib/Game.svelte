@@ -1,6 +1,6 @@
 <script lang="ts">
     import Rand from 'seedrandom'
-	import words from "$lib/words"
+	import wordsByLanguage from "$lib/wordsByLanguage"
     import { browser } from '$app/env'
 	import type { ClueLetter, ClueMap } from '$lib/clue'
 	import { clues, clueMapUpdate } from '$lib/clue'
@@ -8,6 +8,10 @@
 	import ShowWord from "$lib/ShowWord.svelte"
 	import Keyboard from "$lib/Keyboard.svelte"
 	import { Container, Row, Toast, Modal, ModalHeader, ModalBody } from "sveltestrap"
+
+	export let language = 'el'
+
+	const words = wordsByLanguage[language]
 
 	let isOpenCopiedToast = false
 
@@ -33,16 +37,33 @@
 	let message = 'Πληκτρολόγησε λέξη'
 	let tries = 0
 
-	const keys = [
-		'Ε', 'Ρ', 'Τ', 'Υ', 'Θ', 'Ι', 'Ο', 'Π',
-	    'Α', 'Σ', 'Δ', 'Φ', 'Γ', 'Η', 'Ξ', 'Κ', 'Λ',
-		'Ζ', 'Χ', 'Ψ', 'Ω', 'Β', 'Ν', 'Μ'
-	]
+	const keysByLanguage = {
+		'el': [
+			'Ε', 'Ρ', 'Τ', 'Υ', 'Θ', 'Ι', 'Ο', 'Π',
+	    	'Α', 'Σ', 'Δ', 'Φ', 'Γ', 'Η', 'Ξ', 'Κ', 'Λ',
+			'Ζ', 'Χ', 'Ψ', 'Ω', 'Β', 'Ν', 'Μ'
+		],
+		'hu': [
+			'Ö', 'Ü', 'Ó',
+			'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', 'Ő', 'Ú',
+			'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'É', 'Á', 'Ű',
+			'Í', 'Y', 'X', 'C', 'V', 'B', 'N', 'M'
+		]
+	}
+
+	const keys = keysByLanguage[language]
+	
+	const localeByLanguage = {
+		'el': 'el-GR',
+		'hu': 'hu-HU'
+	}
+
+	const locale = localeByLanguage[language]
 
 	function keyboardEventHandler(e: KeyboardEvent) {
 		if (!active) return
-		if (keys.includes(e.key.toLocaleUpperCase('el-GR')) && currentWord.length < WordLength) {
-			currentWord = currentWord + e.key.toLocaleUpperCase('el-GR')
+		if (keys.includes(e.key.toLocaleUpperCase(locale)) && currentWord.length < WordLength) {
+			currentWord = currentWord + e.key.toLocaleUpperCase(locale)
 			wordList[tries] = currentWord
 		}
 		if (e.key === 'Backspace') {
@@ -88,13 +109,13 @@
 	function clickHandler() {
 		// navigator.clipboard only available with https
 		if (win && navigator.clipboard) {
-			let clipString = todayString + " Γουόρντλι " + tries + "/6" + "\n"
+			let clipString = todayString + " Γουόρντλι " + language + " " + tries + "/6" + "\n"
 			for (const x of clueList) {
 				if (x === '') break;
 				const colored = x.replace(/e/g, '🟩').replace(/m/g, '🟨').replace(/a/g, '⬛')
 				clipString = clipString + colored + "\n"
 			}
-			clipString = clipString + 'https://philaris-elmasterle.netlify.app'
+			clipString = clipString + 'https://philaris-elmasterle.netlify.app/' + language
 			navigator.clipboard.writeText(clipString)
 			isOpenCopiedToast = true
 		}
@@ -107,7 +128,7 @@
 <Container fluid>
 
 	<Row class="justify-content-md-center">
-		<div on:click={toggle} class="center">ΓΟΥΟΡΝΤΛΙ {todayString} ?</div>
+		<div on:click={toggle} class="center">ΓΟΥΟΡΝΤΛΙ {language} {todayString} ?</div>
 		<Modal isOpen={openModal} {toggle} style="background-color: darkgreen">
 			<ModalHeader {toggle} style="background-color: darkgreen">
 				<h1>ΓΟΥΟΡΝΤΛΙ</h1>
@@ -144,7 +165,7 @@
 		  <div on:click={clickHandler} class="center">{message}</div>
 	</Row>
 
-    <Row><Keyboard {keys} {clueMap} /></Row>
+    <Row><Keyboard {language} {keys} {clueMap} /></Row>
 
 	<Row class="justify-content-md-center">
 		<Toast isOpen={isOpenCopiedToast} autohide={true} delay={2500}

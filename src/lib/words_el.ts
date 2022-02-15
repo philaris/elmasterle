@@ -1,4 +1,4 @@
-const words = [ 
+export default [ 
 "ΑΒΑΘΑ",
 "ΑΒΑΘΕ",
 "ΑΒΑΘΗ",
@@ -8502,5 +8502,3 @@ const words = [
 "ΩΣΠΟΥ",
 "ΩΧΡΑΣ",
 ]
-
-export {words as default}
