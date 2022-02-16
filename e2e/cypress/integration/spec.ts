@@ -38,20 +38,20 @@ it('loss_el', () => {
 })
 
 it('win_en', () => {
-  cy.clock(Date.UTC(2022, 2-1, 15))
+  cy.clock(Date.UTC(2022, 2-1, 16))
   cy.visit('/en')
 
   cy.wait(1000)
   cy.document().trigger('keyup', {eventConstructor: 'KeyboardEvent', key: 'Enter'})
 
-  enterWord('atone')
-  enterWord('aloft')
-  enterWord('bemad')
+  enterWord('tears')
+  enterWord('abbey')
+  enterWord('bogey')
   cy.contains('Κέρδισες')
 })
 
 it('loss_en', () => {
-  cy.clock(Date.UTC(2022, 2-1, 15))
+  cy.clock(Date.UTC(2022, 2-1, 16))
   cy.visit('/en')
 
   cy.wait(1000)
