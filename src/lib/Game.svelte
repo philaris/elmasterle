@@ -31,6 +31,7 @@
     let win = false
     let wordList: string[] = Array(MaxTries).fill('')
     let clueList: string[] = Array(MaxTries).fill('')
+    let unknownWordList: boolean[] = Array(MaxTries).fill(false)
     let clueMap: ClueMap = new Map<string, ClueLetter>()
     let currentWord = ''
     let currentClue = ''
@@ -77,15 +78,23 @@
         if (keys.includes(e.key.toLocaleUpperCase(locale)) && currentWord.length < WordLength) {
             currentWord = currentWord + e.key.toLocaleUpperCase(locale)
             wordList[tries] = currentWord
+            if (currentWord.length === WordLength) {
+                if (!words.includes(currentWord)) {
+                    unknownWordList[tries] = true
+                } else {
+                    unknownWordList[tries] = false
+                }
+            }
         }
         if (e.key === 'Backspace') {
             currentWord = currentWord.slice(0, -1)
             message = 'Πληκτρολόγησε λέξη'
             wordList[tries] = currentWord
+            unknownWordList[tries] = false
         }
         if (e.key === 'Enter') {
             if (currentWord.length === WordLength) {
-                if (words.includes(currentWord)) {
+                if (!unknownWordList[tries]) {
                     currentClue = clues(currentWord, target)
                     clueMap = clueMapUpdate(currentWord, currentClue, clueMap)
                     clueList[tries] = currentClue
@@ -170,7 +179,7 @@
 
     
     {#each wordList as _, i}
-        <ShowWord word={wordList[i]} clue={clueList[i]} />
+        <ShowWord word={wordList[i]} clue={clueList[i]} unknownWord={unknownWordList[i]} />
     {/each}
 
     <Row class="justify-content-md-center">
