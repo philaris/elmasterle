@@ -1,7 +1,7 @@
 <script lang="ts">
     import Rand from 'seedrandom'
     import wordsByLanguage from "$lib/wordsByLanguage"
-    import { browser } from '$app/env'
+    import { browser } from '$app/environment'
     import type { ClueLetter, ClueMap } from '$lib/clue'
     import { clues, clueMapUpdate } from '$lib/clue'
 
@@ -149,7 +149,7 @@
 <Container fluid>
 
     <Row class="justify-content-md-center">
-        <div on:click={toggle} class="center">ΓΟΥΟΡΝΤΛΙ {language} {todayString} ?</div>
+        <div on:click={toggle} on:keydown={toggle} class="center">ΓΟΥΟΡΝΤΛΙ {language} {todayString} ?</div>
         <Modal isOpen={openModal} {toggle} style="background-color: darkgreen">
             <ModalHeader {toggle} style="background-color: darkgreen">
                 <h1>ΓΟΥΟΡΝΤΛΙ</h1>
@@ -183,7 +183,7 @@
     {/each}
 
     <Row class="justify-content-md-center">
-          <div on:click={clickHandler} class="center">{message}</div>
+          <div on:click={clickHandler} on:keydown={clickHandler} class="center">{message}</div>
     </Row>
 
     <Row><Keyboard {language} {keys} {clueMap} /></Row>
