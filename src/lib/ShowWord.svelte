@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ShowLetter from "$lib/ShowLetter.svelte"
-	import { Col, Row } from 'sveltestrap'
+	import { Col, Row } from '@sveltestrap/sveltestrap'
 	export let word = ''
 	export let clue = ''
 	export let unknownWord = false

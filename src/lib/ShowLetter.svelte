@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Col } from 'sveltestrap'
+    import { Col } from '@sveltestrap/sveltestrap'
     export let letter = ' '
     export let clueLetter = ' '
     export let unknownWord = false

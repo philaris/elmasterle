@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Key from "$lib/Key.svelte"
-	import { Row } from "sveltestrap"
+	import { Row } from "@sveltestrap/sveltestrap"
 	export let keys: string[]
 	export let clueMap: Map<string, string> = new Map<string, string>()
 </script>

@@ -7,7 +7,7 @@
 
     import ShowWord from "$lib/ShowWord.svelte"
     import Keyboard from "$lib/Keyboard.svelte"
-    import { Container, Row, Toast, Modal, ModalHeader, ModalBody } from "sveltestrap"
+    import { Container, Row, Toast, Modal, ModalHeader, ModalBody } from "@sveltestrap/sveltestrap"
 
     export let language = 'el'
 
