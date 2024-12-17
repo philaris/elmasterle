@@ -7,7 +7,7 @@
 
     import ShowWord from "$lib/ShowWord.svelte"
     import Keyboard from "$lib/Keyboard.svelte"
-    import { Container, Row, Toast, Modal, ModalHeader, ModalBody } from "@sveltestrap/sveltestrap"
+    import { Button, Container, Row, Toast, Modal, ModalBody } from "@sveltestrap/sveltestrap"
 
     interface Props {
         language?: string;
@@ -153,12 +153,10 @@
 <Container fluid>
 
     <Row class="justify-content-md-center">
-        <div onclick={toggle} onkeydown={toggle} class="center">ΓΟΥΟΡΝΤΛΙ {language} {todayString} ?</div>
+        <Button onclick={toggle} onkeydown={toggle} class="center">ΓΟΥΟΡΝΤΛΙ {language} {todayString} ?</Button>
         <Modal isOpen={openModal} {toggle} style="background-color: darkgreen">
-            <ModalHeader {toggle} style="background-color: darkgreen">
-                <h1>ΓΟΥΟΡΝΤΛΙ</h1>
-            </ModalHeader>
             <ModalBody style="background-color: #002800">
+                <h1>ΓΟΥΟΡΝΤΛΙ</h1>
                 <p>
                     Ελληνικός κλώνος του <a href="https://www.powerlanguage.co.uk/wordle/">Wordle</a>
                     με <a href= "https://kit.svelte.dev/">SvelteKit</a>.
