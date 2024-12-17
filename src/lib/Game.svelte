@@ -153,7 +153,7 @@
 <Container fluid>
 
     <Row class="justify-content-md-center">
-        <Button onclick={toggle} onkeydown={toggle} class="center">ΓΟΥΟΡΝΤΛΙ {language} {todayString} ?</Button>
+        <Button onclick={toggle} onkeydown={toggle} class="center"><h1>ΓΟΥΟΡΝΤΛΙ {language} {todayString} ?</h1></Button>
         <Modal isOpen={openModal} {toggle} style="background-color: darkgreen">
             <ModalBody style="background-color: #002800">
                 <h1>ΓΟΥΟΡΝΤΛΙ</h1>
