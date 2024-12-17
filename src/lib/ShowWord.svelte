@@ -1,9 +1,13 @@
 <script lang="ts">
 	import ShowLetter from "$lib/ShowLetter.svelte"
 	import { Col, Row } from '@sveltestrap/sveltestrap'
-	export let word = ''
-	export let clue = ''
-	export let unknownWord = false
+	interface Props {
+		word?: string;
+		clue?: string;
+		unknownWord?: boolean;
+	}
+
+	let { word = '', clue = '', unknownWord = false }: Props = $props();
 </script>
 
 <Row class="justify-content-md-center">

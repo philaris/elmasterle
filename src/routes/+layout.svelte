@@ -1,8 +1,13 @@
-<script>
+<script lang="ts">
 	import { Styles } from '@sveltestrap/sveltestrap'
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 </script>
 <Styles />
-<slot />
+{@render children?.()}
 
 <style>
   :global(body) {

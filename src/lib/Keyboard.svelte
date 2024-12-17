@@ -3,9 +3,13 @@
     import Keyboard_en from "$lib/Keyboard_en.svelte"
     import Keyboard_hu from "$lib/Keyboard_hu.svelte"
     import Keyboard_it from "$lib/Keyboard_it.svelte"
-    export let language: string
-    export let keys: string[]
-    export let clueMap: Map<string, string> = new Map<string, string>()
+    interface Props {
+        language: string;
+        keys: string[];
+        clueMap?: Map<string, string>;
+    }
+
+    let { language, keys, clueMap = new Map<string, string>() }: Props = $props();
 </script>
 
 {#if language === 'el'}

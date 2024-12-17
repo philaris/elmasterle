@@ -1,8 +1,12 @@
 <script lang="ts">
     import { Col } from '@sveltestrap/sveltestrap'
-    export let letter = ' '
-    export let clueLetter = ' '
-    export let unknownWord = false
+    interface Props {
+        letter?: string;
+        clueLetter?: string;
+        unknownWord?: boolean;
+    }
+
+    let { letter = ' ', clueLetter = ' ', unknownWord = false }: Props = $props();
 </script>
 
 <span class="letterbox {clueLetter} {unknownWord ? 'unknownWord' : ''}">

@@ -1,8 +1,12 @@
 <script lang="ts">
 	import Key from "$lib/Key.svelte"
-	export let key: string
-	export let clueLetter: string = ' '
-	export let keyWidth: string = '5.0vh'
+	interface Props {
+		key: string;
+		clueLetter?: string;
+		keyWidth?: string;
+	}
+
+	let { key, clueLetter = ' ', keyWidth = '5.0vh' }: Props = $props();
 
 	function click(): void {
 		const keyString = key === '↵' ? 'Enter' : (key === '⌫' ? 'Backspace' : key)
@@ -13,7 +17,7 @@
 
 <button class="keybox {clueLetter || ' '}"
     style="--keyWidth: {keyWidth}"
-    on:click={click}>{key}</button>
+    onclick={click}>{key}</button>
 
 <style>
 	.keybox {

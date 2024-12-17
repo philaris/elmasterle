@@ -1,8 +1,12 @@
 <script lang="ts">
 	import Key from "$lib/Key.svelte"
 	import { Row } from "@sveltestrap/sveltestrap"
-	export let keys: string[]
-	export let clueMap: Map<string, string> = new Map<string, string>()
+	interface Props {
+		keys: string[];
+		clueMap?: Map<string, string>;
+	}
+
+	let { keys, clueMap = new Map<string, string>() }: Props = $props();
 </script>
 
 <Row class="justify-content-md-center">

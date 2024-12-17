@@ -9,11 +9,15 @@
     import Keyboard from "$lib/Keyboard.svelte"
     import { Container, Row, Toast, Modal, ModalHeader, ModalBody } from "@sveltestrap/sveltestrap"
 
-    export let language = 'el'
+    interface Props {
+        language?: string;
+    }
+
+    let { language = 'el' }: Props = $props();
 
     const words = wordsByLanguage[language]
 
-    let isOpenCopiedToast = false
+    let isOpenCopiedToast = $state(false)
 
     const WordLength = 5
     const MaxTries = 6
@@ -29,13 +33,13 @@
     const target = words[indexRandom]
     let active = true
     let win = false
-    let wordList: string[] = Array(MaxTries).fill('')
-    let clueList: string[] = Array(MaxTries).fill('')
-    let unknownWordList: boolean[] = Array(MaxTries).fill(false)
-    let clueMap: ClueMap = new Map<string, ClueLetter>()
+    let wordList: string[] = $state(Array(MaxTries).fill(''))
+    let clueList: string[] = $state(Array(MaxTries).fill(''))
+    let unknownWordList: boolean[] = $state(Array(MaxTries).fill(false))
+    let clueMap: ClueMap = $state(new Map<string, ClueLetter>())
     let currentWord = ''
     let currentClue = ''
-    let message = 'Πληκτρολόγησε λέξη'
+    let message = $state('Πληκτρολόγησε λέξη')
     let tries = 0
 
     const keysByLanguage = {
@@ -142,14 +146,14 @@
         }
     }
 
-    let openModal = false
+    let openModal = $state(false)
     const toggle = () => (openModal = !openModal)
 </script>
 
 <Container fluid>
 
     <Row class="justify-content-md-center">
-        <div on:click={toggle} on:keydown={toggle} class="center">ΓΟΥΟΡΝΤΛΙ {language} {todayString} ?</div>
+        <div onclick={toggle} onkeydown={toggle} class="center">ΓΟΥΟΡΝΤΛΙ {language} {todayString} ?</div>
         <Modal isOpen={openModal} {toggle} style="background-color: darkgreen">
             <ModalHeader {toggle} style="background-color: darkgreen">
                 <h1>ΓΟΥΟΡΝΤΛΙ</h1>
@@ -183,7 +187,7 @@
     {/each}
 
     <Row class="justify-content-md-center">
-          <div on:click={clickHandler} on:keydown={clickHandler} class="center">{message}</div>
+          <div onclick={clickHandler} onkeydown={clickHandler} class="center">{message}</div>
     </Row>
 
     <Row><Keyboard {language} {keys} {clueMap} /></Row>
