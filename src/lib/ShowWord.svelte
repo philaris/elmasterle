@@ -2,12 +2,12 @@
 	import ShowLetter from "$lib/ShowLetter.svelte"
 	import { Col, Row } from '@sveltestrap/sveltestrap'
 	interface Props {
-		word?: string;
-		clue?: string;
-		unknownWord?: boolean;
+		word?: string
+		clue?: string
+		unknownWord?: boolean
 	}
 
-	let { word = '', clue = '', unknownWord = false }: Props = $props();
+	let { word = '', clue = '', unknownWord = false }: Props = $props()
 </script>
 
 <Row class="justify-content-md-center">

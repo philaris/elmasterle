@@ -1,7 +1,9 @@
+import { SvelteMap } from "svelte/reactivity"
+
 // letter clue: absent, misplaced, exact
 export type ClueLetter = 'a' | 'm' | 'e'
 
-export type ClueMap = Map<string, ClueLetter>
+export class ClueMap extends SvelteMap<string, ClueLetter> {}
 
 export function clues(guess: string, target: string): string {
     const wordLength = guess.length
@@ -29,7 +31,7 @@ export function clues(guess: string, target: string): string {
     return clueArray.join('')
 }
 
-export function clueMapUpdate(guess: string, clues: string, clueMap: ClueMap) {
+export function clueMapUpdate(guess: string, clues: string, clueMap: ClueMap): ClueMap {
     const wordLength = guess.length
     for (let i = 0; i < wordLength; i++) {
         const letter = guess.charAt(i)

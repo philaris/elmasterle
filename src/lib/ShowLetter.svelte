@@ -1,9 +1,9 @@
 <script lang="ts">
     import { Col } from '@sveltestrap/sveltestrap'
     interface Props {
-        letter?: string;
-        clueLetter?: string;
-        unknownWord?: boolean;
+        letter: string
+        clueLetter: string
+        unknownWord: boolean
     }
 
     let { letter = ' ', clueLetter = ' ', unknownWord = false }: Props = $props();

@@ -2,7 +2,8 @@
     import Rand from 'seedrandom'
     import wordsByLanguage from "$lib/wordsByLanguage"
     import { browser } from '$app/environment'
-    import type { ClueLetter, ClueMap } from '$lib/clue'
+    import { ClueMap } from "$lib/clue"
+    import type { ClueLetter } from '$lib/clue'
     import { clues, clueMapUpdate } from '$lib/clue'
 
     import ShowWord from "$lib/ShowWord.svelte"
@@ -36,7 +37,7 @@
     let wordList: string[] = $state(Array(MaxTries).fill(''))
     let clueList: string[] = $state(Array(MaxTries).fill(''))
     let unknownWordList: boolean[] = $state(Array(MaxTries).fill(false))
-    let clueMap: ClueMap = $state(new Map<string, ClueLetter>())
+    let clueMap: ClueMap = new ClueMap()
     let currentWord = ''
     let currentClue = ''
     let message = $state('Πληκτρολόγησε λέξη')
