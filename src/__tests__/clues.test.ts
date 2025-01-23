@@ -1,4 +1,6 @@
-import { clues } from '../lib/clue'
+import { describe, expect, test } from 'vitest'
+
+import { clues } from '$lib/clue'
 
 describe('Clues from guess word and target word', () => {
     test('All absent', () => {

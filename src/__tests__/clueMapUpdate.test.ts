@@ -1,4 +1,5 @@
-import { ClueMap, clueMapUpdate } from '../lib/clue'
+import { describe, expect, test } from 'vitest'
+import { ClueMap, clueMapUpdate } from '$lib/clue'
 
 describe('Update keyboard clue map', () => {
     test('All absent in first guess', () => {
@@ -20,7 +21,7 @@ describe('Update keyboard clue map', () => {
     test('One misplaced in first guess', () => {
         const emptyMap = new ClueMap()
         const result = clueMapUpdate('ΚΛΟΠΗ', 'aaama', emptyMap)
-        const expected = new ClueMap[
+        const expected = new ClueMap([
             ['Κ', 'a'], ['Λ', 'a'], ['Ο', 'a'], ['Π', 'm'], ['Η', 'a']
         ])
         expect(result).toEqual(expected)
